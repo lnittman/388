@@ -1,0 +1,29 @@
+####
+PROJECT 3
+####
+
+
+The purpose of this penetration test is to find potential vulnerabilities on the wireless infrastructure MegaCorp has in place. Specifically, we want to pinpoint what credentials, devices and company secrets are insufficiently protected from attackers. 
+
+The angle of attack started with cracking MegaCorp's wifi protected with a WPA2-PSK password. Due to sloppy management of company secrets, the template for the wifi password was leaked to outsiders. Using Kali Linux along with aircrack, we were able to send a deauthentication packet to a device connected to the network, making it having to reconnect to it. While do so, we could intercept the 4-way WPA handshake. By generating a list of all possible passwords (using character wildcards such as % and @), brute forcing the hash of the password. Once connected to the network, we used nmap to gain information about the devices connected to the network, using an IP scan.
+
+With the information obtained from nmap, we were able to access the MegaCorp website using HTTP as well as the server via ssh. Access to the server gave us the opportunity to use tcpdump to construct a .pcap file, which is more easily analyzed in Wireshark. One of these packets contained plenty of critical information, obviously not intended for anyone outside of MegaCorp's top executives. Furthermore, whatever files we came across on the server were extracted.     
+
+What follows is a list of important information we were able to get our hands on, without proper MegaCorp login credentials.
+
+- The hostnames and IP addresses of the following machines: OpenWrt.lan (192.168.1.1), raspberrypi.lan (192.168.1.111), and an unnamed machine (192.168.1.97).
+- The MegaCorp wifi password: which for the month of October 2016 was "EECS388-d20".
+- The admin login credentials. Username = "david", password = "388roxmysocks".
+- A company secret: "Layoffs are coming! Just letting the execs know, we'll be laying off 30% of the workforce come December. Be sure not to tell the employees until it's time. If this got out, our quarterly projections would drop".
+- Another company secret: "The NSA is logging all of our email. Don't tell the security team, why would they need to know?".
+- A third company secret: the new password to the executive lounge: "Tr1ck0rTr34t".
+- A fourth company secret. The server's hard drives broke before launch. The CEO (and pentesters) are not supposed to be aware of this, nor what type of hard drives are in use instead. They are using a Sandisk-USB in lieu of a hard drive.  
+- It is possible to connect to the server and website without using the MegaCorp wifi by ssh:ing to cosmos.eecs.umich.edu on tcp port 47923 and 47924, respectively. 
+
+Below we provide some quick fixes for increasing the overall security of MegaCorp's remote office. 
+
+Intuitively, a longer, more complex password for the wifi network is more secure than the short one in place today. Hence an immediate fix to increase security is to change the current password. Also, sticking to a pattern for passwords is not recommended as the effort of brute forcing such passwords is reduced.
+
+The admin credentials (and associated company secrets) were transmitted over HTTP, which is far from recommended from a security perspective. None of the data in these packets is encrypted, making it easy for attackers to read secrets in plaintext. It is recommended that MegaCorp switches to HTTPS instead, which uses TLS to encrypt packets. 
+
+

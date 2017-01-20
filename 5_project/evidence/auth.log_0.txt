@@ -1,0 +1,8 @@
+Nov 21 16:28:58 nefarious-laptop dbus-daemon: Rejected send message, 4 matched rules; type="error", sender=":1.10" (uid=0 pid=2448 comm="/sbin/wpa_supplicant -u -f /var/log/wpa_supplicant") interface="(unset)" member="(unset)" error name="fi.epitest.hostap.WPASupplicant.InvalidInterface" requested_reply=0 destination=":1.8" (uid=0 pid=2442 comm="/usr/sbin/NetworkManager --pid-file /var/run/Netwo"))
+Nov 21 21:30:02 nefarious-laptop CRON[2811]: pam_unix(cron:session): session opened for user root by (uid=0)
+Nov 21 21:30:11 nefarious-laptop CRON[2811]: pam_unix(cron:session): session closed for user root
+Nov 21 21:40:01 nefarious-laptop CRON[3008]: pam_unix(cron:session): session opened for user root by (uid=0)
+Nov 21 21:40:02 nefarious-laptop CRON[3008]: pam_unix(cron:session): session closed for user root
+Nov 21 21:47:17 nefarious-laptop sudo:     root : TTY=unknown ; PWD=/ ; USER=nefarious ; COMMAND=/usr/bin/gconftool --get /system/http_proxy/use_http_proxy
+Nov 21 21:47:18 nefarious-laptop sudo:     root : TTY=unknown ; PWD=/ ; USER=nefarious ; COMMAND=/usr/bin/gconftool --get /system/http_proxy/host
+Nov 21 21:47:18 nefarious-laptop sudo:     root : TTY=unknown ; PWD=/ ; USER=nefarious ; COMMAND=/usr/bin/gconftool --get /system/http_proxy/port

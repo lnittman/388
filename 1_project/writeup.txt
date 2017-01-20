@@ -1,0 +1,8 @@
+Question 1:
+Using HMAC over MD5 in the design of the API would avoid length-extension attacks by virtue of the double application of the hash function. In particular, the outermost hash function diffuses the inner hash value, which prevents the adversary from appending their own string to the last hashed block.
+
+Question 2:
+Two files which hash to the same value but have widely different functions can pose many threats. For instance, an adversary might construct malware which has the same digital signature as a popular program. The package manager will then verify the signature as valid, and install potentially harmful software. 
+
+Question 3:
+Bleichenbacher's attack works under the assumption that the the length of the unpadded message cubed is less than the modulus used. By raising the length of the unpadded message to at least 2^16 + 1 instead, that number is likely to exceed and "wrap around" the modulus. This in turn makes in impossible to simply take the reciprocal exponent to decrypt the ciphertext. 

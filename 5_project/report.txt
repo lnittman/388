@@ -1,0 +1,34 @@
+1. When booting the machine normally, the boot mechanism threw a theft-detection error. All subsequent boots of the same disk yielded the error that no bootable medium was found. Our understanding is that the theft-detection mechanism automatically wipes the disk clean. For pictorial evidence, see files theft_boot.png and no_disk_found.png. 
+
+2. The suspect’s computer seems to be running Puppy Linux 4.3.1. We deduced this by looking in the /etc/ directory in disk partition 1. Please refer to file DISTRO_SPECS.txt. 
+
+3. From the IRC logs and name of the home directory, it seems as the most common username is ‘nefarious’. Furthermore, most programs on the disk seem to be configured with this username. The name of the disk is nefarious-laptop. See for instance evidence files #planning.log, and username.png.
+
+4. Based on the files in the directory IRC logs, it appears as if Mr. Nefarious has an accomplice who goes by the alias Swolchok who supplied him with an escape vehicle after the shooting. From the brief correspondence they had between 01:54:24 AM and 01:56:28 AM on November 25 2009, Swolchok was told to wait outside the Dough [sic!] building (probably the DOW building) at 03:15 AM on the same day. See evidence file #planning.log.
+
+5. While going through the disk partitions, we discovered a file named passwords.zip. When attempting to open that .zip file, we were prompted with a box asking for the associated password. Hence the file is encrypted. We initially used fcrackzip to brute-force the password, to no avail. We later tried using several different dictionaries. A dictionary containing the 100000 most common English words turned out to contain the correct password. 
+
+Running a dictionary attack through fcrackzip, password.zip was found to be password-protected with ‘warrant’. Unzipping the file with this password yielded five .txt documents, each containing a distinct alphanumeric passphrase. These may be useful in examining other devices and connections used by the suspect in the run-up to and aftermath of the attack. See evidence passwords.zip and password*.txt in /evidence/.
+
+6. By investigating logs from the browsers used by the suspect, we got our hands on a file containing search queries made in Mozilla Firefox. One of those queries contained the phrase ‘nerf guns.’ Another log file containing actual browsing history revealed visits to the manufacturer’s website, along with other URLs pertaining to Nerf gun modification. We have reason to believe that Mr. Nefarious was conducting this research on the basis of forging a lethal weapon with which to murder Hapless Victim. 
+
+Since a bullet of the same brand was found on the crime scene by previous investigators, the correlation indicates that Mr. Nefarious was indeed researching the ballistics used in the murder. See the files formhistory.sqlite and places.sqlite for specific instances of the suspect’s search history.  
+
+7. When sorting all deleted files using Autopsy, a particularly suspicious-looking image file was detected, named evil_plan.bmp. However, that file was deleted on November 30 2009. See evil_plan_deleted.png. Based on auth.log, it seems as if Nefarious double-checked that evil_plan was sufficiently fragmented using filefrag, to make sure that the file was impossible to reconstruct. He logged out immediately following this, which leads us to believe that he was happy with the results. However, Gimp appears to have saved the image in a compressed format for use as a a desktop icon thumbnail, which was not deleted along with the actual file. The thumbnail is attached in the evidence folder, see gimp-thumb-2932-22d0c19d.png. 
+
+Evidence item bash_history.png, a screencap of Nefarious’ recent bash command history, shows suspect activity at the command line. He appears to have reset his command history, and then proceeded to remove the file evil_plan.bmp. Perhaps he was not diligent in file-system housekeeping practices after working to delete the incriminating file. In addition, several other files on the disk were deleted shortly after the passing of Hapless Victim. 
+
+8.
+Nov 21 21:47:17: Nefarious was connected to a proxy server
+Nov 21 22:26:44 - 22:49:55: According to auth.log, Nefarious opens Synaptic - a popular package manager for Debian-based systems. It is assumed that he is downloading password-cracking software (i.e. Hydra) at this time. 
+Nov 23 14:44:15: Connected to engin.umich.edu
+Nov 24 22:39:17: Nefarious changes his IP address
+Nov 25 01:54:24: Connected to IRC with Swolchok to discuss final plans and preparations
+Nov 25 02:59:41: Opened Gimp and finalized the file evil_plan.bmp
+Nov 25 03:15:00: Estimated pick-up time at the Dough (DOW) building
+Nov 25 06:00:00: Body of Hapless Victim discovered in the EECS building
+Nov 30 12:15:48: File evil_plan.bmp was deleted from the disk
+
+See all the evidence files for support of this timeline.
+
+9. Based on logs containing command line activity, we have seen several instances of Hydra being called and used in attempts to crack SSH logins. The suspect also visited several websites regarding password-cracking while browsing through a proxy server. We have also obtained detailed log files suggesting that he downloaded lists of common passwords for use in brute-force dictionary attacks, as well as Metasploit, a popular penetration testing software suite. This gives us ample reason to believe that he was attempting illegal password-cracking and other dubious network activity for reasons both related and non-related to the case. See auth.log.0, auth.log, daemon.log and places.sqlite for detailed information.
